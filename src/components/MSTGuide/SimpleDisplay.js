@@ -12,6 +12,8 @@ function SimpleDisplay () {
         <legend>Name</legend>
         <b>{store.player}</b>
       </fieldset>
+    
+      <div><a href="https://github.com/shaunanoordin/starter-react-app/blob/master/src/components/MSTGuide/SimpleDisplay.js" target="_blank">[View Source]</a></div>
     </div>
   )
 }

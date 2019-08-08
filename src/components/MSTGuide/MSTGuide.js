@@ -15,7 +15,7 @@ export default function MSTGuide () {
       <section>
         <h2>Setting up the MobX Store</h2>
 
-        <p>Looking at the source code of this project, we see there's <code>/src/store/AppStore.js</code> and <code>/src/store/AppContext.js</code></p>
+        <p>Looking at the source code of this project, we see there's <code>/src/store/AppStore.js</code> <a href="https://github.com/shaunanoordin/starter-react-app/blob/master/src/store/AppStore.js" target="_blank">[View Source]</a> and <code>/src/store/AppContext.js</code> <a href="https://github.com/shaunanoordin/starter-react-app/blob/master/src/store/AppContext.js" target="_blank">[View Source]</a></p>
 
         <p>AppStore is a basic MST Store</p>
 
@@ -103,7 +103,7 @@ export default observer(SimpleDisplay)
       <section>
         <h2>Creating more interesting MobX Stores</h2>
         
-        <p>Check out <code>/src/store/CharacterSheetStore.js</code> for most of the code we talk about here.</p>
+        <p>Check out <code>/src/store/CharacterSheetStore.js</code> for most of the code we talk about here. <a href="https://github.com/shaunanoordin/starter-react-app/blob/master/src/store/CharacterSheetStore.js" target="_blank">[View Source]</a></p>
         
         <p>1. An MST Store can have another MST Store as its child, as long as <i>you remember to initialise the store.</i> One way to do this is to provide an empty object, which sets the default value of the sub-store to be an... empty object.</p>
 

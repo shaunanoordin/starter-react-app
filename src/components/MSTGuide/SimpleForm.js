@@ -20,6 +20,8 @@ function SimpleForm () {
           onChange={e => store.setPlayer(e.target.value) }
         />
       </fieldset>
+        
+      <div><a href="https://github.com/shaunanoordin/starter-react-app/blob/master/src/components/MSTGuide/SimpleForm.js" target="_blank">[View Source]</a></div>
     </form>
   )
 }

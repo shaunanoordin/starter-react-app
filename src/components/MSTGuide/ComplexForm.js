@@ -54,6 +54,8 @@ class ComplexForm extends React.Component {
           
           <div><i>{characterSheet.description}</i></div>
         </fieldset>
+
+        <div><a href="https://github.com/shaunanoordin/starter-react-app/blob/master/src/components/MSTGuide/ComplexForm.js" target="_blank">[View Source]</a></div>
             
       </form>
     )

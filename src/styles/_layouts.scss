@@ -27,5 +27,9 @@ article {
     padding: 1rem;
     background: #def;
   }
+  
+  a[href*="github.com"] {
+    font-size: 0.6em;
+  }
 }
 
