@@ -42,6 +42,18 @@ class ComplexForm extends React.Component {
             </div>
           ))}
         </fieldset>
+
+        <fieldset>
+          <legend>Description</legend>
+          <button
+            className="action button"
+            onClick={() => { characterSheet.generateDescription() }}
+          >
+            Generate Description
+          </button>
+          
+          <div><i>{characterSheet.description}</i></div>
+        </fieldset>
             
       </form>
     )
