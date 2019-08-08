@@ -12,8 +12,8 @@ const AppStore = types.model('AppStore', {
 }).actions(self => {
   return {
     
-    setUser (val) {
-      self.user = val
+    setPlayer (val) {
+      self.player = val
     },
 
   }

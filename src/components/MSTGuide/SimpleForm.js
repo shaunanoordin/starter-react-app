@@ -1,21 +1,27 @@
 import React, { useContext } from 'react'
 import { observer } from 'mobx-react'
 import AppContext from '@store'
+import { stopEvent } from '@util'
 
-function TestForm() {
+function SimpleForm () {
   const store = useContext(AppContext)
   return (
-    <form>
+    <form
+      className="form"
+      onSubmit={(e) => { return stopEvent(e) }}
+    >
+      <h2>Edit Player</h2>
+    
       <fieldset>
-        <legend>Username</legend>
+        <legend>Name</legend>
         <input
           type="text"
-          defaultValue={store.user}
-          onChange={e => store.setUser(e.target.value) }
+          defaultValue={store.player}
+          onChange={e => store.setPlayer(e.target.value) }
         />
       </fieldset>
     </form>
   )
 }
 
-export default observer(TestForm)
+export default observer(SimpleForm)

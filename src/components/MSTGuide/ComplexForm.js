@@ -1,65 +1,73 @@
-import React, { useContext } from 'react'
-import config from '@config'
+import React from 'react'
+import { observer } from 'mobx-react'
+import AppContext from '@store'
 import { stopEvent } from '@util'
 
-const MESSAGE = {
-  DEFAULT: 'Use this form to change the configuration settings for the app.',
-  CHANGED: 'Changes made. Please reload the app.',
-  RESET: 'Config values have been reset. Please reload the app.',
-}
-
-class ConfigForm extends React.Component {
+class ComplexForm extends React.Component {
   constructor (props) {
     super(props)
-    
-    this.state = {
-      message: MESSAGE.DEFAULT,
-    }
   }
   
   render () {
-    const state = this.state;
+    const characterSheet = this.context.characterSheet
     
     return (
-      <form className="form" onSubmit={(e) => { return stopEvent(e) }}>
-        <h2>App Config</h2>
-        <p>{state.message}</p>
-      
-        {Object.keys(config).map((key) => {
-          return (
-            <fieldset key={key}>
-              <legend>{key}</legend>
-              <div className="flex-row">
-                <input
-                  className="long text input flex-item grow"
-                  defaultValue={config[key]}
-                  onChange={(e) => {
-                    localStorage.setItem(key, e.target.value)
-                    this.setState({ message: MESSAGE.CHANGED })
-                  }}
-                />
-              </div>
-            </fieldset>
-          )
-        })}
-  
-        <div className="action panel">
+      <form
+        className="form"
+        onSubmit={(e) => { return stopEvent(e) }}
+      >
+        <h2>Character Sheet</h2>
+        
+        <fieldset>
+          <legend>Job</legend>
+          <input
+            type="text"
+            defaultValue={characterSheet.job}
+            onChange={e => characterSheet.setJob(e.target.value) }
+          />
+        </fieldset>
+        
+        <fieldset>
+          <legend>Stats</legend>
           <button
-            className="danger button"
-            type="button"
-            onClick={(e) => {
-              Object.keys(config).map((key) => {
-                localStorage.removeItem(key)
-                this.setState({ message: MESSAGE.RESET })
-              })
-            }}
+            className="action button"
+            onClick={this.rollStats.bind(this)}
           >
-            Reset
+            Roll for Stats
           </button>
-        </div>
+            
+          {Object.keys(characterSheet.stats).map(key => (
+            <div key={`stat-${key}`}>
+              <b>{key}</b> : <i>{characterSheet.stats[key]}</i>
+            </div>
+          ))}
+        </fieldset>
+            
       </form>
     )
   }
+  
+  rollStats () {
+    const characterSheet = this.context.characterSheet
+    const roll = this.roll1d6;
+    
+    const stats = {
+      strength: roll() + roll() + roll(),
+      dexterity: roll() + roll() + roll(),
+      constitution: roll() + roll() + roll(),
+      wisdom: roll() + roll() + roll(),
+      intelligence: roll() + roll() + roll(),
+      charisma: roll() + roll() + roll(),
+    }
+    
+    characterSheet.setStats(stats)
+  }
+
+  roll1d6 () {
+    return Math.floor(Math.random() * 6) + 1
+  }
 }
 
-export default ConfigForm
+ComplexForm.contextType = AppContext
+
+export default observer(ComplexForm)
