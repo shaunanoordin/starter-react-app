@@ -89,7 +89,6 @@ function SimpleDisplay () {
 
 export default observer(SimpleDisplay)
 
-
 `}</div>
         
         <p>Below, you'll see a demo of a <code>SimpleDisplay</code> that simply pulls and observes values from a store, and a <code>SimpleForm</code> that does the same, <i>plus</i> it lets you write back to the store using <code>store.setPlayer()</code>. You know, just to prove that the first component is observing the store properly.</p>
@@ -101,8 +100,45 @@ export default observer(SimpleDisplay)
         </div>
         
       </section>
+      
+      <section>
+        <h2>Using full React Components</h2>
+        
+        <p>When using simple (functional) React components isn't enough, and you need to use a full-blown <code>React.Component</code> with full state/lifecycle/etc functionality, there's an even simpler way to connect it to the context where your MST store resides. You don't use <code>useContext()</code>, but instead simply use <code>MyComponent.contextType = AppContext</code>, which lets you connect to your store by using <code>const store = this.context</code> or <code>const subStore = this.context.subStore</code>.</p>
+        
+        <p>(Don't forget that you still need that <code>observer</code> though.)</p>
+
+<div className="example-code">{`
+import React from 'react'
+import { observer } from 'mobx-react'
+import AppContext from '@store'
+
+class ComplexForm extends React.Component {
+  constructor (props) {
+    super(props)
+  }
+  
+  render () {
+    const characterSheet = this.context.characterSheet
     
-      <ComplexForm />
+    return (
+      ...
+    )
+  }
+}
+
+ComplexForm.contextType = AppContext
+
+export default observer(ComplexForm)
+
+`}</div>
+
+        <p>Below, you'll see a demo of a <code>ComplexForm</code> in action.</p>
+        
+        <div className="demo">
+          <ComplexForm />
+        </div>
+      </section>
     
     </article>
     
