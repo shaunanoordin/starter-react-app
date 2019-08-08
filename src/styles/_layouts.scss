@@ -7,4 +7,25 @@
   border: 1px solid $mid-colour;
   padding: 0.5em;
   padding: 0.5em;
+  color: $primary-colour;
 }
+
+code {
+  color: $primary-colour;
+}
+
+article {
+  line-height: 1.25em;
+  
+  section {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  
+  .demo {
+    margin: 1rem;
+    padding: 1rem;
+    background: #def;
+  }
+}
+
