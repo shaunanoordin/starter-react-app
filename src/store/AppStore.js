@@ -1,8 +1,6 @@
 import { types } from 'mobx-state-tree'
 import { CharacterSheetStore } from './CharacterSheetStore'
 
-const DEMO_MODE_STORAGE_KEY = 'demoMode'
-
 const AppStore = types.model('AppStore', {
   
   player: types.optional(types.string, 'Player 1'),

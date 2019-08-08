@@ -5,9 +5,7 @@ import AppContext from '@store'
 function SimpleDisplay () {
   const store = useContext(AppContext)
   return (
-    <div
-      className="form"
-    >
+    <div className="form">
       <h2>Player Details</h2>
     
       <fieldset>
