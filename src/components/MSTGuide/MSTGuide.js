@@ -98,6 +98,58 @@ export default observer(SimpleDisplay)
 
           <SimpleForm />
         </div>
+      </section>
+      
+      <section>
+        <h2>Creating more interesting MobX Stores</h2>
+        
+        <p>Check out <code>/src/store/CharacterSheetStore.js</code> for most of the code we talk about here.</p>
+        
+        <p>1. An MST Store can have another MST Store as its child, as long as <i>you remember to initialise the store.</i> One way to do this is to provide an empty object, which sets the default value of the sub-store to be an... empty object.</p>
+
+<div className="example-code">{`
+const AppStore = types.model('AppStore', {
+  characterSheet: types.optional(CharacterSheetStore, {}),
+})
+
+`}</div>
+        
+        <p>Another way, which is used by the main Zooniverse monorepo and may in truth be the better option, is to initialise the Store by passing in a function that returns <code>MyStore.create()</code>.</p>
+        
+<div className="example-code">{`
+const AppStore = types.model('AppStore', {
+  characterSheet: types.optional(CharacterSheetStore, () => CharacterSheetStore.create({})),
+})
+
+`}</div>
+        
+        <p>2. You can use <code>types.frozen({})</code> for arbitrary (but non-changing) data stored as objects. For example, results from an API.</p>
+        
+        <p>3. <code>getRoot()</code> lets you access the root store (in our case, AppStore), which is helpful if your store's actions require the data state of different stores to perform a function.</p>
+        
+        <p>Both </p>
+
+<div className="example-code">{`
+import { types, getRoot } from 'mobx-state-tree'
+
+const CharacterSheetStore = types.model('CharacterSheetStore', {
+  
+  job: types.optional(types.string, 'Fighter'),
+  description: types.optional(types.string, 'No description set'),
+  
+}).actions(self => {
+  return {
+    
+    generateDescription () {
+      const root = getRoot(self)
+      self.description = root.player + ' works as a ' + self.job
+    }
+  }
+})
+
+export { CharacterSheetStore }
+
+`}</div>
         
       </section>
       
