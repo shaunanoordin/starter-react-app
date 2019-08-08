@@ -44,15 +44,6 @@ html, body {
         color: $primary-contrast;
         padding: 0.5rem 1rem;
       }
-      
-      label {
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        
-        &.active {
-          background: $danger-colour;
-        }
-      }
     }
   }
   
