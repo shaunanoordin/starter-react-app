@@ -1,14 +1,9 @@
 import React from 'react'
 import { HashRouter as Router, Route } from 'react-router-dom'
 
-import ConfigForm from './ConfigForm'
-import Home from './Home'
 import Header from './Header'
-import MLTaskManager from './MLTaskManager'
-import TestForm from './TestForm'
-
-import demoDataForTask from '@demo-data/task.txt'
-import demoDataForResults from '@demo-data/detections.txt'
+import Home from './Home'
+import MSTGuide from './MSTGuide'
 
 class App extends React.Component {
   constructor () {
@@ -22,9 +17,7 @@ class App extends React.Component {
           <Header />
           <main>
             <Route path="/" exact component={Home} />
-            <Route path="/tasks" component={MLTaskManager} />
-            <Route path="/config" component={ConfigForm} />
-            <Route path="/test" component={TestForm} />
+            <Route path="/mst" component={MSTGuide} />
           </main>
           <footer>Footer</footer>
         </>

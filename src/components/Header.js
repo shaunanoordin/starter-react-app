@@ -8,20 +8,10 @@ function Header() {
   const store = useContext(AppContext)
   return (
     <header>
-      <h1>Zoo ML Subject Assistant</h1>
-      <h2>Hello, {store.user}</h2>
+      <h1>Starter React App</h1>
+      <h2>Hello, {store.player}</h2>
       <nav>
         <Link to="/">Home</Link>
-        <label
-          className={(store.demoMode) ? 'active' : ''}
-        >
-          <input
-            type="checkbox"
-            checked={store.demoMode}
-            onChange={store.toggleDemoMode}
-          />
-          Demo Mode
-        </label>
       </nav>
     </header>
   )
